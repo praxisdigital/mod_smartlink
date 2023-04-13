@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="mod/smartlink/db" VERSION="20230323" COMMENT="XMLDB file for smart link module"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+	<TABLES>
+		<TABLE NAME="smartlink" COMMENT="Each record contains smart link activity content">
+			<FIELDS>
+				<FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+				<FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" />
+				<FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+                <FIELD NAME="intro" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT=""/>
+                <FIELD NAME="introformat" TYPE="int" LENGTH="4" NOTNULL="false" DEFAULT="0" SEQUENCE="false"/>
+				<FIELD NAME="url" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT=""/>
+                <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+				<FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+			</FIELDS>
+			<KEYS>
+				<KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+			</KEYS>
+			<INDEXES>
+				<INDEX NAME="course" UNIQUE="false" FIELDS="course"/>
+			</INDEXES>
+		</TABLE>
+        <TABLE NAME="smartlink_prompts" COMMENT="Each record contains smart link activity content">
+			<FIELDS>
+				<FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+                <FIELD NAME="description" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT=""/>
+                <FIELD NAME="prompt" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT=""/>
+                <FIELD NAME="language" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT=""/>
+                <FIELD NAME="active" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false"/>
+				<FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false"/>
+			</FIELDS>
+			<KEYS>
+				<KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+			</KEYS>
+		</TABLE>
+	</TABLES>
+</XMLDB>

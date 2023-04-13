@@ -1,0 +1,22 @@
+<div class="modal fade response-modal" id="responseModal" tabindex="-1" role="dialog" aria-labelledby="responseModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog result-modal-dialog modal-margin" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="responseModalLabel">{{#str}}ai_result_title, smartlink{{/str}}</h2>
+        <button type="button" class="close modal-hide" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-left">
+        <div class="prompt-desc"></div>
+        <div class="prompt-text"></div>
+        <div class="row">
+            <div class="col-md-10 ai-response p-5"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary modal-hide" data-dismiss="modal">{{#str}}closebuttontitle, core{{/str}}</button>
+      </div>
+    </div>
+  </div>
+</div>

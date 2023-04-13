@@ -1,0 +1,71 @@
+<div class="modal fade" id="newPromptModal" tabindex="-1" role="dialog" aria-labelledby="newPromptModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-lg modal-margin" role="document">
+    <form method="POST" name="prompt-form">
+    <input type="hidden" name="action">
+    <input type="hidden" name="id" id="prompt-id">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="newPromptModalLabel">{{#str}}add_prompt_title, smartlink{{/str}}</h2>
+        <button type="button" class="close modal-hide" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-left p-5">
+        <div class="form-group row">
+            <div class="col-md-12 prompt-edit-warning">{{#str}}prompt_edit_warning, smartlink{{/str}}</div>
+            <input type="hidden" id="lang-selection-input" name="language">
+            <label class="col-sm-3 col-form-label">{{#str}}language, core{{/str}}</label>
+            <div class="col-sm-9">
+                <div class="dropdown show">
+                    <a class="btn btn-secondary dropdown-toggle transparent-bg" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span id="lang-selection-text"><span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        {{#lang_lsit}}
+                          <button class="dropdown-item lang-selection" data-id="{{code}}">{{name}}</button>
+                        {{/lang_lsit}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">{{#str}}description, core{{/str}}</label>
+            <div class="col-sm-9">
+                <textarea class="form-control" rows="2" name="description" required></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">{{#str}}prompt, smartlink{{/str}}
+              <a class="btn btn-link p-0" role="button" data-container="body" data-toggle="popover" data-placement="right" data-content="<div class=&quot;no-overflow&quot;><p>{{#str}}prompt_help_description, smartlink{{/str}}</p></div> " data-html="true" tabindex="0" data-trigger="focus" data-original-title="" title="" id="yui_3_17_2_1_1680601190785_279">
+                <i class="icon fa fa-question-circle text-info fa-fw " title="{{#str}}prompt_help_title, smartlink{{/str}}" aria-label="{{#str}}prompt_help_title, smartlink{{/str}}"></i>
+              </a>
+            </label>
+            <div class="col-sm-9">
+                <textarea class="form-control" rows="5" name="prompt" id="prompt" required></textarea>
+                <div id="promptFeedback" class="invalid-feedback">{{#str}}url_param_validation_msg, smartlink{{/str}}</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <input type="hidden" id="status-selection-input" name="active">
+            <label class="col-sm-3 col-form-label">Status</label>
+            <div class="col-sm-9">
+                <div class="dropdown show">
+                    <a class="btn btn-secondary dropdown-toggle transparent-bg" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span id="status-selection-text"><span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
+                        <button class="dropdown-item status-selection" data-id="1">{{#str}}active, core{{/str}}</button>
+                        <button class="dropdown-item status-selection" data-id="0">{{#str}}inactive, core{{/str}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary modal-hide" data-dismiss="modal">{{#str}}cancel, core{{/str}}</button>
+        <button type="submit" class="btn btn-primary" id="add-update-btn">{{#str}}add, core{{/str}}</button>
+      </div>
+    </div>
+    </form>
+  </div>
+</div>

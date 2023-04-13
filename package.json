@@ -1,0 +1,15 @@
+{
+  "name": "mod_smartlink",
+  "version": "1.0.0",
+  "description": "This is the AI based smart link module for the courses",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scsscompile": "node-sass amd/scss/styles.scss styles.css -w --output-style compressed"
+  },
+  "author": "Lahiru Fernando",
+  "license": "ISC",
+  "dependencies": {
+    "node-sass": "^7.0.1"
+  }
+}

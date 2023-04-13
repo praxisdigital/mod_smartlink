@@ -1,0 +1,28 @@
+<div class="modal fade custom-prompt-modal" id="ownPromptModal" tabindex="-1" role="dialog" aria-labelledby="ownPromptModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-margin" role="document">
+    <form method="POST" name="custom-prompt-form">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="ownPromptModalLabel">{{#str}}custom_prompt_modal_title, smartlink{{/str}}</h2>
+        <button type="button" class="close modal-hide" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-left p-5">
+        {{#str}}own_prompt_description, smartlink, {{url}}{{/str}}
+        <div class="form-group row mt-5">
+            <label class="col-sm-3 col-form-label">{{#str}}prompt, smartlink{{/str}}</label>
+            <div class="col-sm-9">
+                <textarea class="form-control" rows="4" name="prompt" id="prompt" required></textarea>
+                <div id="promptFeedback" class="invalid-feedback">{{#str}}url_param_validation_msg, smartlink{{/str}}</div>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary modal-hide" data-dismiss="modal">{{#str}}cancel, core{{/str}}</button>
+        <button type="submit" class="btn btn-primary submit-own-prompt-btn">{{#str}}submit, core{{/str}}</button>
+      </div>
+    </div>
+    </form>
+  </div>
+</div>

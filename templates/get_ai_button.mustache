@@ -1,0 +1,30 @@
+<div class="container-fluid get-ai-section">
+    <div class="row mt-5 mb-5">
+        <div class="col-md-10">
+            <div class="dropdown show">
+                <button class="btn btn-secondary dropdown-toggle" data-display="static" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{#str}}get_ai_button, smartlink{{/str}}
+                </button>
+                <div class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenu2">
+                    {{#hasprompts}}
+                        {{#prompts}}
+                            <a class="dropdown-item run-prompt-btn" href="#" data-id="{{id}}">{{description}}</a>
+                        {{/prompts}}
+                    {{/hasprompts}}
+                    {{^hasprompts}}
+                        <a class="dropdown-item disabled" href="#">{{#str}}no_prompt_msg, smartlink{{/str}}</a>
+                    {{/hasprompts}}
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" data-toggle='modal' data-target='#ownPromptModal'>{{#str}}createnew, core{{/str}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="spinner d-none" id="loader">
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </div>
+</div>

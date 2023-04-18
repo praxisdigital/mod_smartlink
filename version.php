@@ -8,7 +8,7 @@ $plugin->release    = 'v1.0.0.4';
 $plugin->component = 'mod_smartlink';
 $plugin->maturity   = MATURITY_STABLE;
 $plugin->dependencies   = array(
-    'assignsubmission_pxaiwriter'    => 2023022100,
+    'assignsubmission_pxaiwriter'    => 2023013100,
 );
 
 ?>

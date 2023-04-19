@@ -16,9 +16,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * quizsummary module version information
+ * smartlink module version information
  *
- * @package mod_quizsummary
+ * @package mod_smartlink
  * @copyright  2022 Autotech
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

@@ -26,7 +26,7 @@
 require_once('../../config.php');
 require_once($CFG->dirroot . '/mod/smartlink/lib.php');
 
-global $PAGE, $USER, $CFG;
+global $PAGE, $USER, $CFG, $COURSE;
 
 $id      = required_param('id', PARAM_INT); // Course Module ID
 
@@ -41,8 +41,9 @@ $context = context_module::instance($cm->id);
 
 require_login($course, false, $cm);
 
-$pageurl = new moodle_url('/mod/smartlink/view.php');
-$PAGE->set_url($pageurl);
+$pageurl = new moodle_url('/mod/smartlink/view.php', ['id' => $cm->id]);
+$PAGE->set_url($pageurl, ['id' => $cm->id]);
+
 $PAGE->set_context($context);
 $PAGE->set_title(get_string('pluginname', 'smartlink'));
 $PAGE->set_heading(get_string('pluginname', 'smartlink'));
@@ -52,10 +53,10 @@ $prompts = get_available_prompts();
 echo $OUTPUT->header();
 
 $view = $OUTPUT->render_from_template('mod_smartlink/get_ai_button', ['hasprompts' => count($prompts) > 0, 'prompts' => array_values($prompts)]);
-$view .= $OUTPUT->render_from_template('mod_smartlink/add_custom_prompt_modal',['url' => $smartlink->url]);
-$view .= $OUTPUT->render_from_template('mod_smartlink/ai_response_modal',[]);
+$view .= $OUTPUT->render_from_template('mod_smartlink/add_custom_prompt_modal', ['url' => $smartlink->url]);
+$view .= $OUTPUT->render_from_template('mod_smartlink/ai_response_modal', []);
 
-$PAGE->requires->js_call_amd('mod_smartlink/smartlink_actions', 'init', ['prompts' => $prompts, 'courseid'=> $courseid, 'instanceid' => $instanceid]);
+$PAGE->requires->js_call_amd('mod_smartlink/smartlink_actions', 'init', ['prompts' => $prompts, 'courseid' => $courseid, 'instanceid' => $instanceid]);
 
 echo $view;
 

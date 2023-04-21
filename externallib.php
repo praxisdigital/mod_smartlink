@@ -43,7 +43,12 @@ class mod_smartlink_external extends external_api
                 $prompt = $serialiseddata->prompt;
             }
 
-            $payload['prompt'] = str_replace('{url}', $prompturl, $prompt);
+            if (strpos($prompt, '{url}')) {
+                $payload['prompt'] = str_replace('{url}', $prompturl, $prompt);
+            }
+            else {
+                $payload['prompt'] = $prompt ." ". $prompturl;
+            }
 
             $result = self::sendCurlRequest($url, $payload, "POST", $config);
 
@@ -65,7 +70,7 @@ class mod_smartlink_external extends external_api
             }
 
             $data = new stdClass();
-            $data->prompt_text = $payload['prompt'];;
+            $data->prompt_text = $payload['prompt'];
             $data->description = $description;
             $data->result = $genText;
 

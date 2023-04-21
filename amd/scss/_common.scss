@@ -8,9 +8,9 @@
     overflow-x: hidden;
 }
 
-.get-ai-section {
-    height: 400px;
-}
+// .get-ai-section {
+    // height: 400px;
+// }
 
 .prompt-text {
     font-style: italic;
@@ -51,6 +51,21 @@
 .spinner {
     position: absolute; 
     top: 50%; 
-    left: 50%; 
-    z-index: 9999;
+    left: 50%!important; 
+    z-index: 9999999!important;
+    margin-left: 0em!important;
+    
+}
+
+.ai-response{
+    max-height: 400px;
+    overflow-y: scroll;
+}
+
+.modtype_smartlink{
+    .activity-altcontent{
+        .no-overflow{
+            overflow: unset!important;
+        }
+    }
 }

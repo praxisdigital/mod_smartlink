@@ -126,7 +126,7 @@ function get_available_prompts()
         $lang = current_language();
     }
 
-    $sql = "SELECT * FROM {smartlink_prompts} WHERE ". $DB->sql_compare_text('language') . "= :lang AND active = :active ORDER BY id ";
+    $sql = "SELECT * FROM {smartlink_prompts} WHERE " . $DB->sql_compare_text('language') . "= :lang AND active = :active ORDER BY id ";
 
     $results = $DB->get_records_sql($sql, array('lang' => $lang, 'active' => 1));
     return $results;
@@ -186,9 +186,27 @@ function mod_smartlink_supports($feature)
 
     if (floatval($current_version) > 4) {
         switch ($feature) {
-            case FEATURE_MOD_PURPOSE: return MOD_PURPOSE_CONTENT;
+            case FEATURE_MOD_PURPOSE:
+                return MOD_PURPOSE_CONTENT;
             default:
                 return null;
         }
     }
+}
+
+function mod_smartlink_cm_info_view(cm_info $cm): void
+{
+    global $OUTPUT, $COURSE, $DB, $PAGE;
+
+    $smartlink = $DB->get_record('smartlink', array('id' => $cm->instance), '*', MUST_EXIST);
+    $prompts = get_available_prompts();
+    $instanceid = $cm->instance;
+
+    $view = $OUTPUT->render_from_template('mod_smartlink/get_ai_button', ['hasprompts' => count($prompts) > 0, 'prompts' => array_values($prompts)]);
+    $view .= $OUTPUT->render_from_template('mod_smartlink/add_custom_prompt_modal', ['url' => $smartlink->url]);
+    $view .= $OUTPUT->render_from_template('mod_smartlink/ai_response_modal', []);
+    $PAGE->requires->js_call_amd('mod_smartlink/smartlink_actions', 'init', ['prompts' => $prompts, 'courseid' => $COURSE->id, 'instanceid' => $instanceid]);
+
+    // $cm->set_after_link($view ); // to switch to after link section
+    $cm->set_content($view);
 }

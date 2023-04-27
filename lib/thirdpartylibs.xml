@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<libraries>
+    <library>
+        <location>vendor/andreskrey/readability.php/</location>
+        <name>andreskrey/readability.php</name>
+        <version>v2.1.0</version>
+        <license>apache2</license>
+        <licenseversion></licenseversion>
+    </library>
+</libraries>

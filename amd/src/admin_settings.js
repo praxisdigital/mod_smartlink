@@ -45,7 +45,7 @@ define(["jquery", "core/str"], function ($, Str) {
     });
 
     $("#add-prompt-btn").click(
-      async function (e) {
+      async function () {
         var addStr = await Str.get_string("add", "core");
         $("#add-update-btn").html(addStr);
         $("textarea[name='prompt']").removeClass("is-invalid");
@@ -69,7 +69,7 @@ define(["jquery", "core/str"], function ($, Str) {
       $(".prompt-edit-warning").css("display", "none");
     });
 
-    $("[data-dismiss='modal']").on("click", function (e) {
+    $("[data-dismiss='modal']").on("click", function () {
       $('form[name="prompt-form"]')[0].reset();
       $(".prompt-edit-warning").css("display", "none");
     });

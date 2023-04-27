@@ -1,29 +1,82 @@
 <?php
 
-defined('MOODLE_INTERNAL') || die;
+// @codeCoverageIgnoreStart
+defined('MOODLE_INTERNAL') || die();
+// @codeCoverageIgnoreEnd
 
-$pluginname = get_string('pluginname', 'smartlink');
+if ($ADMIN->fulltree) {
 
-$settings->add(new admin_setting_heading(
-    'smartlinkprompts',
-    new lang_string('prompt_settings', 'smartlink'),
-    new lang_string('prompt_settings_description', 'smartlink'),
-));
+    // ------------- //
+    //    Prompts    //
+    // ------------- //
 
-$label = new lang_string('manage_prompts', 'smartlink');
-$promptsettingspageurl = new moodle_url('/mod/smartlink/index.php');
-$desc = new lang_string('prompt_settings_url', 'smartlink', $promptsettingspageurl->out(false));
-$settings->add(new admin_setting_description('smart_link_prompts', $label, $desc));
+    $settings->add(
+        new admin_setting_heading(
+            'mod_smartlink/prompts',
+            get_string('settings_prompts_title', 'mod_smartlink'),
+            ''
+        )
+    );
 
-$settings->add(new admin_setting_heading(
-    'assignsubmissionheading',
-    new lang_string('open_ai_request_settings', 'assignsubmission_pxaiwriter'),
-    new lang_string('open_ai_request_settings_description', 'assignsubmission_pxaiwriter'),
-));
+    $promptsettingspageurl = new moodle_url('/mod/smartlink/index.php');
+    $settings->add(
+        new admin_setting_description(
+            'mod_smartlink/manage_prompts', 
+            get_string('settings_prompts', 'mod_smartlink'), 
+            get_string('settings_prompts_desc', 'mod_smartlink', $promptsettingspageurl->out(false))
+        )
+    );
 
-$label = new lang_string('open_ai_request_settings', 'assignsubmission_pxaiwriter');
-$openaisettingspageurl = new moodle_url('/admin/settings.php', ['section' => 'assignsubmission_pxaiwriter']);
-$desc = new lang_string('open_ai_settings_details', 'smartlink', $openaisettingspageurl->out(false));
-$settings->add(new admin_setting_description('open_ai_settings', $label, $desc));
+    // ------------------------ //
+    //    OpenAI credentials    //
+    // ------------------------ //
+
+    $settings->add(
+        new admin_setting_heading(
+            'mod_smartlink/openai',
+            get_string('settings_openai_title', 'mod_smartlink'),
+            ''
+        )
+    );
+
+    $settings->add(
+        new admin_setting_configtext(
+            'mod_smartlink/openai_endpoint',
+            get_string('settings_openai_endpoint', 'mod_smartlink'),
+            get_string('settings_openai_endpoint_desc', 'mod_smartlink'),
+            '',
+        )
+    );
+
+    $settings->add(
+        new admin_setting_configtext(
+            'mod_smartlink/openai_token',
+            get_string('settings_openai_token', 'mod_smartlink'),
+            get_string('settings_openai_token_desc', 'mod_smartlink'),
+            '',
+        )
+    );
+
+    $settings->add(
+        new admin_setting_configtext(
+            'mod_smartlink/openai_model',
+            get_string('settings_openai_model', 'mod_smartlink'),
+            get_string('settings_openai_model_desc', 'mod_smartlink'),
+            'gpt-3.5-turbo',
+            '/^[a-z0-9.-]+$/'
+        )
+    );
+
+    $settings->add(
+        new admin_setting_configtext(
+            'mod_smartlink/openai_temperature',
+            get_string('settings_openai_temperature', 'mod_smartlink'),
+            get_string('settings_openai_temperature_desc', 'mod_smartlink'),
+            '0.7',
+            '/^(([0-1][.][0-9])|(2.0))$/'
+        )
+    );
+
+}
 
 ?>

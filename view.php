@@ -23,20 +23,23 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use mod_smartlink\app\factory as base_factory;
+
 require_once('../../config.php');
 require_once($CFG->dirroot . '/mod/smartlink/lib.php');
 
 global $PAGE, $USER, $CFG, $COURSE;
 
-$id      = required_param('id', PARAM_INT); // Course Module ID
+$base_factory = base_factory::make();
+
+$id = required_param('id', PARAM_INT); // Course Module ID
+$forceview = optional_param('forceview', 0, PARAM_BOOL);
 
 $cm = get_coursemodule_from_id('smartlink', $id, 0, false, MUST_EXIST);
 $instanceid = $cm->instance;
 $course = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST);
 $smartlink = $DB->get_record('smartlink', array('id' => $cm->instance), '*', MUST_EXIST);
-
 $courseid = $course->id;
-
 $context = context_module::instance($cm->id);
 
 require_login($course, false, $cm);
@@ -47,6 +50,10 @@ $PAGE->set_url($pageurl, ['id' => $cm->id]);
 $PAGE->set_context($context);
 $PAGE->set_title(get_string('pluginname', 'smartlink'));
 $PAGE->set_heading(get_string('pluginname', 'smartlink'));
+
+$smartlink = $base_factory->smartlink()->get_settings($courseid, $instanceid);
+$url = $smartlink->url ?? '';
+if ($url && !$forceview) { redirect($url); }
 
 $prompts = get_available_prompts();
 

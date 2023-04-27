@@ -13,7 +13,7 @@ define(["jquery", "core/str", "core/ajax"], function ($, Str, Ajax) {
         $('form[name="custom-prompt-form"]')[0].reset();
       });
 
-      $("[data-dismiss='modal']").on("click", function (e) {
+      $("[data-dismiss='modal']").on("click", function () {
         $('form[name="custom-prompt-form"]')[0].reset();
       });
 
@@ -53,9 +53,9 @@ define(["jquery", "core/str", "core/ajax"], function ($, Str, Ajax) {
 
     getAiResponse(promptdata) {
       $("#loader").removeClass("d-none");
-      var promises = Ajax.call([
+      Ajax.call([
         {
-          methodname: "mod_smartlink_get_ai_version",
+          methodname: "mod_smartlink_prompt_openai",
           args: { contextid: this.contextid, jsondata: JSON.stringify(promptdata) },
           done: this.handleResponse.bind(this),
           fail: this.handleFailure.bind(this),
@@ -77,7 +77,6 @@ define(["jquery", "core/str", "core/ajax"], function ($, Str, Ajax) {
         alert(responseObj.message);
       } else {
         var data = responseObj.data;
-        console.log(data);
         $(".prompt-desc").html(data.description);
         $(".prompt-text").html(data.prompt_text);
         $(".ai-response").html(data.result.replace(/\n/g, "<br/>"));

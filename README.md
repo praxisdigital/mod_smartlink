@@ -11,34 +11,40 @@ mod
 ## Description
 AI text submission plugin that allows admins to define submission scope of steps, and students to generate AI assisted content based on assignment title.
 
-## Global settings
-Smartlink requires some setup to be completed before used, forgetting this step will cause the plugin not to work as supposed to be. Here, its mandatory that you complete all the sections Open API request settings and prompt settings. These Open API request settings are used as it is in PXAI writer pluign (Changes will effect to both plugins).
-You can access these set of settings here : https://<site>/admin/settings.php?section=smartlink.
+## Settings
+Smartlink requires some setup to be completed before used, forgetting this step will cause the plugin not to work.
+You can access these set of settings here: https://<site>/admin/settings.php?section=modsettingsmartlink
 
-- URL **(url)**
-- Authorization **(authorization)**
-- Model **(model)**
-- Temperature **(temperature)**
+- Endpoint URL **(openai_endpoint)**
+- API Token **(openai_token)**
+- Model **(openai_model)**
+- Temperature **(openai_temperature)**
 - Max tokens **(max_tokens)**
 - Top p **(top_p)**
 - Frequency Penalty **(frequency_penalty)**
 - Presence penalty **(presence_penalty)**
 - API key **(api_key)**
-- Prompt Settings
-    - See here : https://<site>/mod/smartlink/index.php.
 
 ## Setup
-- Install plugin
-- Go to https://<site>/admin/settings.php?section=smartlink and complete the settings and save.
-- Use the link in https://<site>/admin/settings.php?section=smartlink to add/modify prompts (https://<site>/mod/smartlink/index.php)
-- Go to the Course view and add smart link activity module and add a URL.
-- Click on Get AI Version button to select a prompt to get AI generated results from the added URL in the smart link course module.
+- Install the plugin
+- Ensure that all dependencies are also installed
+- Configure the plugin at https://<site>/admin/settings.php?section=modsettingsmartlink
+- Create some prompts at https://<site>/mod/smartlink/index.php
+- Go to the Course view and add the Smartlink module
+- Click on the "Get AI Version" button and select the prompt you wish to execute. After loading for a few seconds, a modal should appear with your result
 
 **Database tables:**
-- smartlink - This records the smart link data such as the name of the module, URL etc.
+- smartlink - This records the smartlink data such as the name of the module, URL etc.
 - smartlink_prompts - This records the prompt details which are added by the admin.
 
 ## Release notes
+- **1.1.0** (2023042703)
+  - Fix OpenAI not being able to access URL content and hallucinating the content instead (We are now scraping content from the provided URL and including the text in the prompt)
+  - Improve modal styling
+  - Ensure correct module group
+  - Redirect module view.php page to the configured URL
+  - Remove pxaiwriter dependency by creating separate OpenAI settings for Smartlink
+  - Write tests
 - **1.0.0** (2022121400)
   - First version of the plugin
 

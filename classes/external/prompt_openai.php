@@ -54,7 +54,13 @@ class prompt_openai extends \external_api
 
                 $prompt_text = str_replace('{url}', $smartlink->url, $prompt);
 
-                $html = self::$base_factory->moodle()->curl()->get($smartlink->url);
+                $curl = self::$base_factory->moodle()->curl();
+                $html = $curl->get($smartlink->url);
+                
+                if ($curl->error) {
+                    return self::error($curl->error);
+                }
+
                 $readability = new Readability(new Configuration());
                 $readability->parse($html);
                 $article = $readability->getTitle().'. '.strip_tags($readability->getContent());

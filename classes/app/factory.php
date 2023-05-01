@@ -24,4 +24,14 @@ class factory implements interfaces\factory
     {
         return new smartlink\factory($this);
     }
+
+    public function webservices(): webservices\interfaces\factory
+    {
+        return new webservices\factory($this);
+    }
+
+    public function article(): article\interfaces\factory
+    {
+        return new article\factory($this);
+    }
 }

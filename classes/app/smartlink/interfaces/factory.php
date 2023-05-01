@@ -1,4 +1,5 @@
 <?php
+
 namespace mod_smartlink\app\smartlink\interfaces;
 
 // @codeCoverageIgnoreStart

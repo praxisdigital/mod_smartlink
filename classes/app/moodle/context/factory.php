@@ -8,7 +8,6 @@ defined('MOODLE_INTERNAL') || die();
 
 use mod_smartlink\app\factory as base_factory;
 use context;
-use context_system;
 
 class factory implements interfaces\factory 
 {
@@ -19,7 +18,7 @@ class factory implements interfaces\factory
         $this->base_factory = $base_factory;
     }
 
-    public function instance_by_id(int $id, int $strictness = MUST_EXIST): context_system
+    public function instance_by_id(int $id, int $strictness = MUST_EXIST): context
     {
         return context::instance_by_id($id, $strictness);
     }

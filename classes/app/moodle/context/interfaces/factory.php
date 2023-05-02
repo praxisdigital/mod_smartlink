@@ -5,9 +5,9 @@ namespace mod_smartlink\app\moodle\context\interfaces;
 defined('MOODLE_INTERNAL') || die();
 // @codeCoverageIgnoreEnd
 
-use context_system;
+use context;
 
 interface factory 
 {
-    public function instance_by_id(int $id, int $strictness = MUST_EXIST): context_system;
+    public function instance_by_id(int $id, int $strictness = MUST_EXIST): context;
 }

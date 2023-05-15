@@ -6,6 +6,10 @@ $string['pluginadministration'] = 'Smart Link modul administration';
 $string['pluginname'] = 'Smart Link';
 $string['modulenameplural'] = 'Smart Link';
 
+// Capabilities
+$string['smartlink:modifyprompts'] = 'Tillåt användare att lägga till/redigera/ta bort instruktioner';
+$string['smartlink:addinstance'] = 'Tillåt användare att lägga till Smartlink instanser';
+
 // Settings
 $string['settings_prompts_title'] = 'Administrer instruktioner';
 $string['settings_prompts'] = 'Redigera dina instruktioner';

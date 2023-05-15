@@ -6,6 +6,10 @@ $string['pluginadministration'] = 'Smart Link modul administration';
 $string['pluginname'] = 'Smart Link';
 $string['modulenameplural'] = 'Smart Link';
 
+// Capabilities
+$string['smartlink:modifyprompts'] = 'Tillad brugere at oprette/ændre/slette prompts';
+$string['smartlink:addinstance'] = 'Tillad brugere at tilføje Smartlink instanser';
+
 // Settings
 $string['settings_prompts_title'] = 'Administrer prompts';
 $string['settings_prompts'] = 'Rediger dine prompts';

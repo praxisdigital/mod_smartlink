@@ -6,6 +6,10 @@ $string['pluginadministration'] = 'Smart Link module administration';
 $string['pluginname'] = 'Smart Link';
 $string['modulenameplural'] = 'Smart Links';
 
+// Capabilities
+$string['smartlink:modifyprompts'] = 'Allow users to add/edit/delete prompts';
+$string['smartlink:addinstance'] = 'Allow users to add Smartlink instances';
+
 // Settings
 $string['settings_prompts_title'] = 'Manage prompts';
 $string['settings_prompts'] = 'Manage your prompts';

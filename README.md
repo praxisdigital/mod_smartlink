@@ -38,13 +38,14 @@ You can access these set of settings here: https://<site>/admin/settings.php?sec
 - smartlink_prompts - This records the prompt details which are added by the admin.
 
 ## Release notes
-- **1.1.0** (2023050100)
+- **1.1.0** (2023051500)
   - Fix OpenAI not being able to access URL content and hallucinating the content instead (We are now scraping content from the provided URL and including the text in the prompt)
   - Improve modal styling
   - Ensure correct module group
   - Redirect module view.php page to the configured URL
   - Remove pxaiwriter dependency by creating separate OpenAI settings for Smartlink
   - Write tests
+  - Add missing capability strings
 - **1.0.0** (2022121400)
   - First version of the plugin
 

@@ -5,12 +5,12 @@
     <input type="hidden" name="id" id="prompt-id">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="newPromptModalLabel">{{#str}}add_prompt_title, smartlink{{/str}}</h2>
+        <h4 class="modal-title" id="newPromptModalLabel">{{#str}}add_prompt_title, smartlink{{/str}}</h4>
         <button type="button" class="close modal-hide" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body text-left p-5">
+      <div class="modal-body openai-modal-body text-left p-4">
         <div class="form-group row">
             <div class="col-md-12 prompt-edit-warning">{{#str}}prompt_edit_warning, smartlink{{/str}}</div>
             <input type="hidden" id="lang-selection-input" name="language">

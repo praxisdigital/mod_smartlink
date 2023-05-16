@@ -1,1 +1,76 @@
-.transparent-bg{background:transparent}.scrollable-menu{height:auto;max-height:300px;overflow-x:hidden}.prompt-text{font-style:italic}.prompt-desc{font-weight:bolder;font-size:large;line-height:20px;padding-top:5px;padding-bottom:15px}.prompt-edit-icon{cursor:pointer}.prompt-edit-warning{color:crimson;margin-bottom:20px;display:none}.modal-margin{margin-top:11% !important}.result-modal-dialog{margin-top:11% !important;max-width:760px}.dropdown-menu{max-height:200px;overflow-y:auto}.spinner{position:absolute;top:50%;left:50% !important;z-index:9999999 !important;margin-left:0em !important}.ai-response{max-height:400px;overflow-y:scroll}.modtype_smartlink .activity-altcontent .no-overflow{overflow:unset !important}
+.transparent-bg {
+    background: transparent;
+}
+
+.scrollable-menu {
+    height: auto;
+    max-height: 300px;
+    overflow-x: hidden;
+}
+
+.prompt-text {
+    font-style: italic;
+}
+
+.prompt-desc {
+    font-weight: bold;
+    font-size: 1.2rem;
+    line-height: 1.4;
+    padding: 5px 0;
+}
+
+.prompt-edit-icon {
+    cursor: pointer;
+}
+
+.prompt-edit-warning {
+    color:crimson;
+    margin-bottom: 20px;
+    display: none;
+}
+
+.modal-margin {
+    margin-top: 11% !important;
+}
+
+.result-modal-dialog {
+    margin-top: 11% !important;
+    max-width: 760px;
+}
+
+.dropdown-menu {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.spinner {
+    position: absolute; 
+    top: 50%; 
+    left: 50% !important; 
+    z-index: 9999 !important;
+    margin-left: 0px !important;
+}
+
+.ai-response{
+    max-height: 400px;
+    overflow-y: scroll;
+    margin-top: 1rem;
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.openai-modal-body {
+    font-size: 0.9rem !important;
+}
+
+.modtype_smartlink .activity-altcontent .no-overflow {
+    overflow: unset !important;
+}
+
+.activity-item[data-activityname="Smartlink"] .dropdown .dropdown-item:hover {
+    color: #FFFFFF !important;
+}
+
+.editing .activity-item[data-activityname="Smartlink"]:hover .description .course-description-item {
+    mix-blend-mode: unset !important; 
+    background-color: rgba(0, 0, 0, 0.02) !important;
+}

@@ -2,9 +2,7 @@
 
 require_once('../../config.php');
 require_once $CFG->libdir.'/adminlib.php';
-require_once($CFG->dirroot . '/mod/smartlink/lib.php');
-
-use mod_smartlink\helper;
+require_once(__DIR__.'/lib.php');
 
 global $PAGE, $USER;
 
@@ -20,9 +18,7 @@ $PAGE->set_context($context);
 $PAGE->set_title(get_string('pluginname', 'smartlink'));
 $PAGE->set_heading(get_string('prompt_settings', 'smartlink'));
 
-//$langs = helper::get_available_languages();
-$langs = array();
-
+$langs = [];
 $installedlangs = get_string_manager()->get_list_of_translations(true);
 
 foreach(array_keys($installedlangs) as $langCode) {

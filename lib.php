@@ -3,7 +3,7 @@
 require_once($CFG->dirroot . '/lib/environmentlib.php');
 
 /**
- * Add page instance.
+ * Add page instance
  * @param stdClass $data
  * @param mod_smartlink_mod_form $mform
  * @return int new page instance id
@@ -12,7 +12,7 @@ function smartlink_add_instance($data, $mform = null)
 {
     global $DB, $COURSE, $USER;
 
-    // Add mod instance data to  DB.
+    // Add mod instance data to DB
     $data->course = $COURSE->id;
     $data->userid = $USER->id;
     $data->timemodified = time();
@@ -24,7 +24,7 @@ function smartlink_add_instance($data, $mform = null)
 }
 
 /**
- * Update page instance.
+ * Update page instance
  * @param object $data
  * @param object $mform
  * @return bool true
@@ -43,7 +43,7 @@ function smartlink_update_instance($data, $mform)
 }
 
 /**
- * Delete page instance.
+ * Delete page instance
  * @param int $id
  * @return bool true
  */
@@ -133,7 +133,7 @@ function get_available_prompts()
 }
 
 /**
- * Serves the page files.
+ * Serves the page files
  *
  * @package  mod_smartlink
  * @category files
@@ -168,30 +168,19 @@ function smartlink_pluginfile($course, $cm, $context, $filearea, $args, $forcedo
 }
 
 /**
- * Indicates API features that the forum supports.
+ * Indicates API features that the forum supports
  *
  * @param string $feature
  * @return mixed True if yes (some features may use other values)
  */
 function mod_smartlink_supports($feature)
 {
-    global $CFG;
+    $supports = [
+        FEATURE_MOD_ARCHETYPE => MOD_ARCHETYPE_RESOURCE,
+        FEATURE_MOD_PURPOSE => MOD_PURPOSE_CONTENT,
+    ];
 
-    $current_version = "0.0";
-
-    $release = isset($CFG->release) ? $CFG->release : null;
-    if ($release) {
-        $current_version = normalize_version($release);
-    }
-
-    if (floatval($current_version) > 4) {
-        switch ($feature) {
-            case FEATURE_MOD_PURPOSE:
-                return MOD_PURPOSE_CONTENT;
-            default:
-                return null;
-        }
-    }
+    return $supports[$feature] ?? null;
 }
 
 function mod_smartlink_cm_info_view(cm_info $cm): void

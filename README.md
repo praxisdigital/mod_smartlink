@@ -38,6 +38,8 @@ You can access these set of settings here: https://<site>/admin/settings.php?sec
 - smartlink_prompts - This records the prompt details which are added by the admin.
 
 ## Release notes
+- **1.1.2** (2023052503)
+  - Improve prompt fetching
 - **1.1.1** (2023052502)
   - Fetch available prompts with AJAX to avoid js_call_amd error
   - Fix styling targets

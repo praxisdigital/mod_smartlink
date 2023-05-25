@@ -40,7 +40,7 @@ class repository implements interfaces\repository
         }
 
         $article = $this->base_factory->article()->extract($html);
-        $article = ' ```'.mb_substr($article, 0, 5000).'```';
+        $article = ' ```'.mb_substr($article, 0, 4000).'```';
         $prompt .= $article;
 
         $request->payload['messages'][] = [

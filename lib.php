@@ -1,6 +1,6 @@
 <?php
 
-require_once($CFG->dirroot . '/lib/environmentlib.php');
+require_once($CFG->dirroot.'/lib/environmentlib.php');
 
 /**
  * Add page instance
@@ -32,9 +32,9 @@ function smartlink_add_instance($data, $mform = null)
 function smartlink_update_instance($data, $mform)
 {
     global $CFG, $DB;
-    require_once("$CFG->libdir/resourcelib.php");
+    require_once($CFG->libdir.'/resourcelib.php');
 
-    $data->id    = $data->instance;
+    $data->id = $data->instance;
     $data->timemodified = time();
 
     $DB->update_record('smartlink', $data);
@@ -117,19 +117,17 @@ function get_prompts()
  */
 function get_available_prompts()
 {
-    global $DB, $USER;
-    $results = $lang = null;
-    $courselang = get_config('moodlecourse', 'lang');
-    if ($courselang && $courselang == 'en') {
-        $lang = 'en';
-    } else if ($courselang == '') {
-        $lang = current_language();
-    }
+    global $DB, $CFG;
+    require_once($CFG->libdir.'/moodlelib.php');
 
-    $sql = "SELECT * FROM {smartlink_prompts} WHERE " . $DB->sql_compare_text('language') . "= :lang AND active = :active ORDER BY id ";
+    $language = current_language() ?: 'en';
 
-    $results = $DB->get_records_sql($sql, array('lang' => $lang, 'active' => 1));
-    return $results;
+    $prompts = $DB->get_records_sql('SELECT * FROM {smartlink_prompts} WHERE '.$DB->sql_compare_text('language').' = :language AND active = :active ORDER BY id', [
+        'language' => $language,
+        'active' => 1,
+    ]);
+
+    return $prompts;
 }
 
 /**
@@ -148,8 +146,8 @@ function get_available_prompts()
  */
 function smartlink_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options = array())
 {
-    global $CFG, $DB;
-    require_once("$CFG->libdir/resourcelib.php");
+    global $CFG;
+    require_once($CFG->libdir.'/resourcelib.php');
 
     if ($context->contextlevel != CONTEXT_MODULE) {
         return false;
@@ -187,15 +185,15 @@ function mod_smartlink_cm_info_view(cm_info $cm): void
 {
     global $OUTPUT, $COURSE, $DB, $PAGE;
 
-    $smartlink = $DB->get_record('smartlink', array('id' => $cm->instance), '*', MUST_EXIST);
-    $prompts = get_available_prompts();
     $instanceid = $cm->instance;
+    $smartlink = $DB->get_record('smartlink', ['id' => $instanceid], '*', MUST_EXIST);
+    $prompts = get_available_prompts();
 
     $view = $OUTPUT->render_from_template('mod_smartlink/get_ai_button', ['hasprompts' => count($prompts) > 0, 'prompts' => array_values($prompts)]);
     $view .= $OUTPUT->render_from_template('mod_smartlink/add_custom_prompt_modal', ['url' => $smartlink->url]);
     $view .= $OUTPUT->render_from_template('mod_smartlink/ai_response_modal', []);
+
     $PAGE->requires->js_call_amd('mod_smartlink/smartlink_actions', 'init', ['courseid' => $COURSE->id, 'instanceid' => $instanceid]);
 
-    // $cm->set_after_link($view ); // to switch to after link section
     $cm->set_content($view);
 }

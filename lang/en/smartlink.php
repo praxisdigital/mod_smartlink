@@ -39,7 +39,7 @@ $string['url_param_validation_msg'] = 'The URL-parameter is needed.';
 $string['prompt_edit_warning'] = 'Note! If you edit this, it will be changed in all activities.';
 $string['prompt_modal_close_warning'] = "You are about to close this form. The changes you've made will be lost. Do you wish to continue?";
 $string['response_modal_close_warning'] = "You are about to close the summary. Do you wish to continue?";
-$string['prompt_help_description'] = 'This setting inserts the prompt used in the AI lookup. Add your prompt followed by the {url} parameter.';
+$string['prompt_help_description'] = 'This setting inserts the prompt used in the AI lookup. Your prompt will automatically have the configured link appended';
 $string['prompt_help_title'] = 'Help with Smart Link Prompts';
 
 ?>

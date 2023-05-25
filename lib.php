@@ -194,7 +194,7 @@ function mod_smartlink_cm_info_view(cm_info $cm): void
     $view = $OUTPUT->render_from_template('mod_smartlink/get_ai_button', ['hasprompts' => count($prompts) > 0, 'prompts' => array_values($prompts)]);
     $view .= $OUTPUT->render_from_template('mod_smartlink/add_custom_prompt_modal', ['url' => $smartlink->url]);
     $view .= $OUTPUT->render_from_template('mod_smartlink/ai_response_modal', []);
-    $PAGE->requires->js_call_amd('mod_smartlink/smartlink_actions', 'init', ['prompts' => $prompts, 'courseid' => $COURSE->id, 'instanceid' => $instanceid]);
+    $PAGE->requires->js_call_amd('mod_smartlink/smartlink_actions', 'init', ['courseid' => $COURSE->id, 'instanceid' => $instanceid]);
 
     // $cm->set_after_link($view ); // to switch to after link section
     $cm->set_content($view);

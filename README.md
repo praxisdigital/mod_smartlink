@@ -38,6 +38,13 @@ You can access these set of settings here: https://<site>/admin/settings.php?sec
 - smartlink_prompts - This records the prompt details which are added by the admin.
 
 ## Release notes
+- **1.1.1** (2023052502)
+  - Fetch available prompts with AJAX to avoid js_call_amd error
+  - Fix styling targets
+  - Prevent JS errors when OpenAI response is null
+  - Limit article length to 4000 characters to avoid empty responses
+  - Automatically append URL to prompt, instead of relying on {url} variable
+  - Remove unnecessary tests
 - **1.1.0** (2023051500)
   - Fix OpenAI not being able to access URL content and hallucinating the content instead (We are now scraping content from the provided URL and including the text in the prompt)
   - Improve modal styling

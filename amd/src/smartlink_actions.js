@@ -4,15 +4,34 @@ import * as Str from 'core/str';
 
 class SmartLinkActions {
 
-    constructor(prompts, courseid, instanceid) {
-        this.prompts = Object.values(prompts);
+    constructor(courseid, instanceid) {
+        this.prompts = [];
         this.courseid = courseid;
         this.instanceid = instanceid;
         this.contextid = 1;
         this.init();
     }
 
+    getPrompts() {
+        Ajax.call([
+            {
+                methodname: "mod_smartlink_get_available_prompts",
+                args: {},
+                done: this.handlePrompts.bind(this),
+                fail: this.handleFailure.bind(this),
+            },
+        ]);
+    }
+
+    handlePrompts(response) {
+        let responseData = JSON.parse(response);
+        let prompts = responseData.data || {};
+        this.prompts = Object.values(prompts);
+    }
+
     init() {
+        this.getPrompts();
+
         $(".modal").on("hidden.bs.modal", function () {
             $('form[name="custom-prompt-form"]')[0].reset();
         });
@@ -67,7 +86,7 @@ class SmartLinkActions {
         ]);
     }
 
-  // On a succesful response
+    // On a succesful response
     handleResponse(response) {
         $("#loader").addClass("d-none");
         var responseObj = JSON.parse(response);
@@ -80,10 +99,11 @@ class SmartLinkActions {
         if (responseObj.success == false) {
             alert(responseObj.message);
         } else {
-            var data = responseObj.data;
-            $(".prompt-desc").html(data.description);
-            $(".prompt-text").html(data.prompt_text);
-            $(".ai-response").html(data.result.replace(/\n/g, "<br/>"));
+            let data = responseObj.data;
+            let result = data.result || 'No response from AI';
+            $(".prompt-desc").html(data.description || '');
+            $(".prompt-text").html(data.prompt_text || '');
+            $(".ai-response").html(result.replace(/\n/g, '<br/>'));
             $("#responseModal").modal("toggle");
         }
     }
@@ -96,6 +116,6 @@ class SmartLinkActions {
     }
 }
 
-export const init = (prompts, courseid, instanceid) => {
-    return new SmartLinkActions(prompts, courseid, instanceid);
+export const init = (courseid, instanceid) => {
+    return new SmartLinkActions(courseid, instanceid);
 };

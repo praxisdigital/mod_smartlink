@@ -39,7 +39,7 @@ $string['url_param_validation_msg'] = 'URL-parameteren skal inkluderes.';
 $string['prompt_edit_warning'] = 'Bemærk! Hvis du redigerer denne, vil den blive ændret i alle aktiviteter.';
 $string['prompt_modal_close_warning'] = "Du er ved at lukke denne formular. De ændringer du har foretaget bliver ikke gemt. Ønsker du at fortsætte?";
 $string['response_modal_close_warning'] = "Du er ved at lukke oversigten. Ønsker du at fortsætte?";
-$string['prompt_help_description'] = 'Denne indstilling indsætter den prompt, der bruges i AI-opslaget. Tilføj din prompt efterfulgt af parameteren {url}.';
+$string['prompt_help_description'] = 'Denne indstilling indsætter den prompt, der bruges i AI-opslaget. Din prompt vil automatisk blive efterfulgt af det konfigurerede link';
 $string['prompt_help_title'] = 'Hjælp til Smart Link-prompter';
 
 ?>

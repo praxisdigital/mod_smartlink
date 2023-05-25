@@ -66,11 +66,11 @@
     overflow: unset !important;
 }
 
-.activity-item[data-activityname="Smartlink"] .dropdown .dropdown-item:hover {
+.activity-item .dropdown .dropdown-item:hover {
     color: #FFFFFF !important;
 }
 
-.editing .activity-item[data-activityname="Smartlink"]:hover .description .course-description-item {
+.editing .activity-item:hover .description .course-description-item {
     mix-blend-mode: unset !important; 
     background-color: rgba(0, 0, 0, 0.02) !important;
 }

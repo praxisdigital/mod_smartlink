@@ -30,23 +30,18 @@ class repository implements interfaces\repository
             $description = $record->description;
         }
 
-        $prompt_text = $prompt;
+        $prompt_text = $prompt.' '.$smartlink->url;
 
-        if (strpos($prompt, '{url}')) {
-
-            $prompt_text = str_replace('{url}', $smartlink->url, $prompt);
-
-            $curl = $this->base_factory->moodle()->curl();
-            $html = $curl->get($smartlink->url);
-            
-            if ($curl->error) {
-                throw new Exception($curl->error);
-            }
-
-            $article = $this->base_factory->article()->extract($html);
-            $prompt = str_replace('{url}', $article, $prompt);
-
+        $curl = $this->base_factory->moodle()->curl();
+        $html = $curl->get($smartlink->url);
+        
+        if ($curl->error) {
+            throw new Exception($curl->error);
         }
+
+        $article = $this->base_factory->article()->extract($html);
+        $article = ' ```'.mb_substr($article, 0, 5000).'```';
+        $prompt .= $article;
 
         $request->payload['messages'][] = [
             'role' => 'user',

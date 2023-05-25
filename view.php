@@ -63,7 +63,7 @@ $view = $OUTPUT->render_from_template('mod_smartlink/get_ai_button', ['hasprompt
 $view .= $OUTPUT->render_from_template('mod_smartlink/add_custom_prompt_modal', ['url' => $smartlink->url]);
 $view .= $OUTPUT->render_from_template('mod_smartlink/ai_response_modal', []);
 
-$PAGE->requires->js_call_amd('mod_smartlink/smartlink_actions', 'init', ['prompts' => $prompts, 'courseid' => $courseid, 'instanceid' => $instanceid]);
+$PAGE->requires->js_call_amd('mod_smartlink/smartlink_actions', 'init', ['courseid' => $courseid, 'instanceid' => $instanceid]);
 
 echo $view;
 

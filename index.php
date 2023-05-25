@@ -34,7 +34,7 @@ if (isset($_POST['action'])) {
     update_prompts($data);
 }
 
-$prompt_settings =get_prompts();
+$prompt_settings = get_prompts();
 
 $table = new html_table();
 $table->size[0] = '5%';

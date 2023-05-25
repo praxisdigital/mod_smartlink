@@ -39,16 +39,6 @@ class AdminSettings {
             $("#status-selection-text").html(content);
         });
 
-        $('form[name="prompt-form"]').submit(function (e) {
-            e.preventDefault();
-            var promptVal = $("textarea[name='prompt']").val();
-            if (promptVal.indexOf("{url}") >= 0) {
-                $('form[name="prompt-form"]')[0].submit();
-            } else {
-                $("textarea[name='prompt']").addClass("is-invalid");
-            }
-        });
-
         $("#add-prompt-btn").click(
             async function () {
                 var addStr = await Str.get_string("add", "core");

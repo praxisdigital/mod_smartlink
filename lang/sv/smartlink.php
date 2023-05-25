@@ -39,7 +39,7 @@ $string['url_param_validation_msg'] = 'URL-parametern måste inkluderas.';
 $string['prompt_edit_warning'] = 'Notera! Om du redigerar denna kommer den att ändras i alla aktiviteter.';
 $string['prompt_modal_close_warning'] = "Du håller på att stänga det här formuläret. Ändringarna du har gjort kommer inte att sparas. Vill du fortsätta?";
 $string['response_modal_close_warning'] = "Du är på väg att stänga sammanfattningen. Vill du fortsätta?";
-$string['prompt_help_description'] = 'Den här inställningen infogar instruktionen som används i AI-sökningen. Lägg till din instruktion följt av parametern {url}.';
+$string['prompt_help_description'] = 'Den här inställningen infogar instruktionen som används i AI-sökningen. Din instruktion kommer automatiskt att följas av den konfigurerade länken';
 $string['prompt_help_title'] = 'Hjälp med Smart Link-instruktioner';
 
 ?>

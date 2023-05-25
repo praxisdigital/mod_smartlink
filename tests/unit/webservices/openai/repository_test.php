@@ -43,7 +43,7 @@ class repository_test extends basic_testcase
         // Mock smartlink factory
         $smartlink = $this->getMockBuilder(smartlink_factory::class)->disableOriginalConstructor()->onlyMethods(['get_settings', 'get_prompt'])->getMock();
         $smartlink->method('get_prompt')->willReturn((object)[
-            'prompt' => 'Create 5 question from this article: {url}',
+            'prompt' => 'Create 5 question from this article:',
             'description' => 'Create questions',
         ]);
         $smartlink->method('get_settings')->willReturn((object)[
@@ -88,41 +88,13 @@ class repository_test extends basic_testcase
     public function test_prompt(): void
     {
         $expected = [
-            'description' => 'Create questions',
             'prompt_text' => 'Create 5 question from this article: https://google.com/',
-            'prompt_real' => 'Create 5 question from this article: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac ultrices magna.',
+            'prompt_real' => 'Create 5 question from this article: ```Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac ultrices magna.```',
+            'description' => 'Create questions',
             'result' => 'This is the OpenAI result string',
         ];
 
         $prompt = $this->repository->prompt(1, 1, '', 1);
-
-        self::assertEqualsCanonicalizing($expected, $prompt);
-    }
-
-    public function test_prompt_manual(): void
-    {
-        $expected = [
-            'description' => '',
-            'prompt_text' => 'This is a manual prompt overwrite',
-            'prompt_real' => 'This is a manual prompt overwrite',
-            'result' => 'This is the OpenAI result string',
-        ];
-
-        $prompt = $this->repository->prompt(1, 1, 'This is a manual prompt overwrite', 0);
-
-        self::assertEqualsCanonicalizing($expected, $prompt);
-    }
-
-    public function test_prompt_manual_with_url(): void
-    {
-        $expected = [
-            'description' => '',
-            'prompt_text' => 'This is a manual prompt overwrite with url: https://google.com/',
-            'prompt_real' => 'This is a manual prompt overwrite with url: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac ultrices magna.',
-            'result' => 'This is the OpenAI result string',
-        ];
-
-        $prompt = $this->repository->prompt(1, 1, 'This is a manual prompt overwrite with url: {url}', 0);
 
         self::assertEqualsCanonicalizing($expected, $prompt);
     }

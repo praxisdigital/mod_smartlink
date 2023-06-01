@@ -59,11 +59,11 @@ $prompts = get_available_prompts();
 
 echo $OUTPUT->header();
 
-$view = $OUTPUT->render_from_template('mod_smartlink/get_ai_button', ['hasprompts' => count($prompts) > 0, 'prompts' => array_values($prompts)]);
-$view .= $OUTPUT->render_from_template('mod_smartlink/add_custom_prompt_modal', ['url' => $smartlink->url]);
+$view = $OUTPUT->render_from_template('mod_smartlink/get_ai_button', ['hasprompts' => count($prompts) > 0, 'prompts' => array_values($prompts), 'moduleid' => $cm->id]);
+$view .= $OUTPUT->render_from_template('mod_smartlink/add_custom_prompt_modal', ['url' => $smartlink->url, 'moduleid' => $cm->id]);
 $view .= $OUTPUT->render_from_template('mod_smartlink/ai_response_modal', []);
 
-$PAGE->requires->js_call_amd('mod_smartlink/smartlink_actions', 'init', ['courseid' => $courseid, 'instanceid' => $instanceid]);
+$PAGE->requires->js_call_amd('mod_smartlink/smartlink_actions', 'init', ['courseid' => $courseid, 'instanceid' => $instanceid, 'moduleid' => $cm->id]);
 
 echo $view;
 

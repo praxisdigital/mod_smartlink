@@ -4,10 +4,11 @@ import * as Str from 'core/str';
 
 class SmartLinkActions {
 
-    constructor(courseid, instanceid) {
+    constructor(courseid, instanceid, moduleid) {
         this.prompts = [];
         this.courseid = courseid;
         this.instanceid = instanceid;
+        this.moduleid = moduleid;
         this.contextid = 1;
         this.init();
     }
@@ -40,7 +41,7 @@ class SmartLinkActions {
             $('form[name="custom-prompt-form"]')[0].reset();
         });
 
-        //handle modal outside click confirmation
+        // Click outside modal
         $(document).click(async function (e) {
             if (e.target.id === "ownPromptModal") {
                 var confimationMsg = await Str.get_string("prompt_modal_close_warning", "smartlink");
@@ -55,27 +56,46 @@ class SmartLinkActions {
             }
         });
 
-        $(".run-prompt-btn").click(
-            function (e) {
-                e.preventDefault();
-                var attrVal = $(e.currentTarget).attr("data-id");
-                var promptSetting = this.prompts.find((prompt) => prompt.id == attrVal);
-                if (promptSetting) {
-                    this.getAiResponse({ promptid: promptSetting.id, courseid: this.courseid, instanceid: this.instanceid });
-                }
-            }.bind(this)
-        );
-        $(".submit-own-prompt-btn").click(
-            function (e) {
-                e.preventDefault();
-                var promptVal = $("textarea[name='prompt']").val();
-                this.getAiResponse({ prompt: promptVal, courseid: this.courseid, instanceid: this.instanceid });
-            }.bind(this)
-        );
+        // Prompt from list
+        $('.smartlink[data-id="'+this.moduleid+'"] .run-prompt-btn').click(function (e) {
+            e.preventDefault();
+            let promptId = $(e.target).data('id');
+            let promptSetting = this.prompts.find((prompt) => prompt.id == promptId);
+            if (promptSetting && !this.siblingsLoading()) {
+                this.getAiResponse({
+                    promptid: promptSetting.id,
+                    courseid: this.courseid,
+                    instanceid: this.instanceid
+                });
+            }
+        }.bind(this));
+
+        // Prompt from input
+        $('#ownPromptModal[data-moduleid="'+this.moduleid+'"] .submit-own-prompt-btn').click(function (e) {
+            e.preventDefault();
+            let prompt = $('#ownPromptModal[data-moduleid="'+this.moduleid+'"] textarea[name="prompt"]').val();
+            if (prompt && !this.siblingsLoading()) {
+                this.getAiResponse({
+                    prompt: prompt,
+                    courseid: this.courseid,
+                    instanceid: this.instanceid
+                });
+            }
+        }.bind(this));
+    }
+
+    siblingsLoading() {
+        let loading = false;
+        document.querySelectorAll('.smartlink .spinner').forEach(function(spinner) {
+            if (!spinner.classList.contains('d-none')) {
+                loading = true;
+            }
+        });
+        return loading;
     }
 
     getAiResponse(promptdata) {
-        $("#loader").removeClass("d-none");
+        $('.smartlink[data-id="'+this.moduleid+'"] .spinner').removeClass("d-none");
         Ajax.call([
             {
                 methodname: "mod_smartlink_prompt_openai",
@@ -88,11 +108,12 @@ class SmartLinkActions {
 
     // On a succesful response
     handleResponse(response) {
-        $("#loader").addClass("d-none");
-        var responseObj = JSON.parse(response);
+        $('.smartlink[data-id="'+this.moduleid+'"] .spinner').addClass("d-none");
+        let responseObj = JSON.parse(response);
+        let modal = $('#ownPromptModal[data-moduleid="'+this.moduleid+'"]');
 
-        if ($("#ownPromptModal").is(":visible")) {
-            $("#ownPromptModal").modal("toggle");
+        if (modal.is(':visible')) {
+            modal.modal('toggle');
         }
 
         // Might contain errors anyway
@@ -110,12 +131,12 @@ class SmartLinkActions {
 
     // Failure
     handleFailure(response) {
-        $("#loader").addClass("d-none");
+        $('.smartlink[data-id="'+this.moduleid+'"] .spinner').addClass("d-none");
         var responseObj = JSON.parse(response);
         alert(responseObj.message);
     }
 }
 
-export const init = (courseid, instanceid) => {
-    return new SmartLinkActions(courseid, instanceid);
+export const init = (courseid, instanceid, moduleid) => {
+    return new SmartLinkActions(courseid, instanceid, moduleid);
 };

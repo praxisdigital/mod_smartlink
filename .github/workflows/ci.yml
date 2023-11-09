@@ -3,7 +3,7 @@ name: Integration & Unit test
 on:
   pull_request:
     branches:
-      - MOODLE_40_STABLE
+      - MOODLE_42_STABLE
 
 env:
   php: 8.0
@@ -15,23 +15,23 @@ jobs:
     strategy:
       matrix:
         include:
-          - os: ubuntu-20.04
-            php: 7.4
-            db: mysqli
-            moodle: MOODLE_400_STABLE
-            plugin_branch: MOODLE_40_STABLE
-            experimental: false
           - os: ubuntu-22.04
             php: 8.0
             db: mysqli
-            moodle: MOODLE_400_STABLE
-            plugin_branch: MOODLE_40_STABLE
+            moodle: MOODLE_402_STABLE
+            plugin_branch: MOODLE_42_STABLE
             experimental: false
           - os: ubuntu-22.04
             php: 8.1
             db: mysqli
-            moodle: MOODLE_401_STABLE
-            plugin_branch: MOODLE_40_STABLE
+            moodle: MOODLE_402_STABLE
+            plugin_branch: MOODLE_42_STABLE
+            experimental: true
+          - os: ubuntu-22.04
+            php: 8.2
+            db: mysqli
+            moodle: MOODLE_402_STABLE
+            plugin_branch: MOODLE_42_STABLE
             experimental: true
 
     steps:
@@ -54,7 +54,7 @@ jobs:
           ini-values: "max_input_vars=5000"
 
       - name: Checking out code from moodle/moodle
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: moodle/moodle
           ref: ${{ matrix.moodle }}

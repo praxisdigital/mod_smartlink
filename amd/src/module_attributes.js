@@ -2,7 +2,7 @@ class ModuleAttributes {
     /**
      * @type {number}
      */
-    moduleId = 0;
+    moduleId;
 
     /**
      * @param {number} moduleId

@@ -1,11 +1,19 @@
 class ModuleAttributes {
-    constructor(moduleid) {
-        this.moduleid = moduleid;
+    /**
+     * @type {number}
+     */
+    moduleId = 0;
+
+    /**
+     * @param {number} moduleId
+     */
+    constructor(moduleId) {
+        this.moduleId = moduleId;
         this.init();
     }
 
     init() {
-        const module = document.getElementById("module-" + this.moduleid);
+        const module = document.getElementById("module-" + this.moduleId);
 
         if (module) {
             const link = module.querySelector(".activityname > a");
@@ -14,6 +22,6 @@ class ModuleAttributes {
     }
 }
 
-export const init = (moduleid) => {
-    return new ModuleAttributes(moduleid);
+export const init = (moduleId) => {
+    return new ModuleAttributes(moduleId);
 };

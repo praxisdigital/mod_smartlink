@@ -38,8 +38,9 @@ You can access these set of settings here: https://<site>/admin/settings.php?sec
 - smartlink_prompts - This records the prompt details which are added by the admin.
 
 ## Release notes
-- **2.0.0** (2023110900)
+- **2.0.0** (2023110901)
   - Added support for Moodle 4.2
+  - Smartlink now opens in new tab
 - **1.1.3** (2023053000)
   - Add support for multiple Smartlink instances in same course
 - **1.1.2** (2023052503)

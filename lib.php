@@ -194,6 +194,7 @@ function mod_smartlink_cm_info_view(cm_info $cm): void
     $view .= $OUTPUT->render_from_template('mod_smartlink/ai_response_modal', []);
 
     $PAGE->requires->js_call_amd('mod_smartlink/smartlink_actions', 'init', ['courseid' => $COURSE->id, 'instanceid' => $instanceid, 'moduleid' => $cm->id]);
+    $PAGE->requires->js_call_amd('mod_smartlink/module_attributes', 'init', ['moduleid' => $cm->id]);
 
     $cm->set_content($view);
 }

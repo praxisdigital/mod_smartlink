@@ -31,6 +31,7 @@ $string['prompt'] = 'Prompt';
 $string['add_prompt_title'] = 'Tilføj en prompt';
 $string['url'] = 'URL';
 $string['custom_prompt_modal_title'] = 'Lav din egen AI-prompt';
+$string['click_to_open_x_material'] = 'Klik på <a href="{$a->url}">{$a->name}</a> for at åbne materialet.';
 $string['get_ai_button'] = 'Get AI Muligheder';
 $string['no_prompt_msg'] = 'Ingen tilgængelige prompter på dit sprog';
 $string['own_prompt_description'] = 'Din prompt sættes automisk foran følgende URL: {$a}. <br><br> Du kan f.eks. skrive "Lav et resumé af: " eller "Beskriv de fem vigtigste personer i: " ';

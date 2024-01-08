@@ -31,6 +31,7 @@ $string['prompt'] = 'Prompt';
 $string['add_prompt_title'] = 'Add a prompt';
 $string['url'] = 'URL';
 $string['custom_prompt_modal_title'] = 'Make your own AI prompt';
+$string['click_to_open_x_material'] = 'Click on <a href="{$a->url}">{$a->name}</a> to open the material.';
 $string['get_ai_button'] = 'Get AI Version';
 $string['no_prompt_msg'] = 'No prompts available in your language';
 $string['own_prompt_description'] = 'Your prompt will be added before the following URL: {$a}. <br><br> You can e.g. write "Write a short summary of the following: " or "Describe the five most important people in: " ';

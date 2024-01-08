@@ -31,6 +31,7 @@ $string['prompt'] = 'Instruktion';
 $string['add_prompt_title'] = 'Lägg till instruktion ';
 $string['url'] = 'URL';
 $string['custom_prompt_modal_title'] = 'Gör din egen AI-instruktion';
+$string['click_to_open_x_material'] = 'Klicka på <a href="{$a->url}">{$a->name}</a> för att öppna materialet.';
 $string['get_ai_button'] = 'Visa AI-version';
 $string['no_prompt_msg'] = 'Inga tillgängliga instruktioner för ditt språk';
 $string['own_prompt_description'] = 'Din instruktion sätts automatiskt före följande URL: {$a}. <br><br> Du kan exempelvis skriva “Summera:” eller “Beskriv de fem viktigaste personerna i: " ';

@@ -38,6 +38,8 @@ You can access these set of settings here: https://<site>/admin/settings.php?sec
 - smartlink_prompts - This records the prompt details which are added by the admin.
 
 ## Release notes
+- **2.1.1** (2024042900)
+  - Removed pxsdk dependency
 - **2.1.0** (2024010800)
   - Added "click to open material..." link when force viewing the module
 - **2.0.0** (2023110901)

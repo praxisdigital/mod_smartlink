@@ -26,4 +26,9 @@
     <php>
         <const name="PHPUNIT_SEQUENCE_START" value="138000"/>
     </php>
+    <testsuites>
+        <testsuite name="unit">
+            <directory suffix="_test.php">tests/unit</directory>
+        </testsuite>
+    </testsuites>
 </phpunit>

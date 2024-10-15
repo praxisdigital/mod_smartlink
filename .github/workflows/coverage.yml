@@ -46,6 +46,7 @@ jobs:
           mkdir $GITHUB_WORKSPACE/../moodledata
           sudo locale-gen en_AU.UTF-8
           php $GITHUB_WORKSPACE/admin/tool/phpunit/cli/init.php --no-composer-self-update
+
       - name: Running PHPUnit tests
         env:
           dbtype: mysqli

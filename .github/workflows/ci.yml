@@ -59,6 +59,12 @@ jobs:
           repository: moodle/moodle
           ref: ${{ matrix.moodle }}
 
+      - name: Check out code from ${{ github.repository }}
+        uses: actions/checkout@v4
+        with:
+          path: ${{ github.workspace }}/mod/smartlink
+          ref: ${{ github.ref }}
+
       - name: Lint module code
         run:
           find $GITHUB_WORKSPACE/mod/smartlink -type f -name '*.php' -print0 | xargs -0 -n1 -P4 php -l -n | (! grep -v "No syntax errors detected" )
@@ -76,4 +82,4 @@ jobs:
       - name: Running PHPUnit tests
         env:
           dbtype: ${{ matrix.db }}
-        run: $GITHUB_WORKSPACE/vendor/bin/phpunit -c $GITHUB_WORKSPACE/mod/smartlink/phpunit.xml --testsuite=mod_smartlink_testsuite -v --testdox
+        run: $GITHUB_WORKSPACE/vendor/bin/phpunit -c $GITHUB_WORKSPACE/mod/smartlink/phpunit.xml -v --testdox

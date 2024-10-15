@@ -1,5 +1,7 @@
 # Name: Praxis Smart Link
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/226f399d8a6f4895a6cac5445aab3e7c)](https://app.codacy.com/gh/praxisdigital/mod_smartlink/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+
 ## Repository
 mod_smartlink
 
@@ -38,6 +40,8 @@ You can access these set of settings here: https://<site>/admin/settings.php?sec
 - smartlink_prompts - This records the prompt details which are added by the admin.
 
 ## Release notes
+- **2.1.2** (2024101500)
+  - Fixed css issue overwriting moodle core dropdown css
 - **2.1.1** (2024042900)
   - Removed pxsdk dependency
 - **2.1.0** (2024010800)

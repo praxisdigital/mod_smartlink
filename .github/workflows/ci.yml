@@ -76,4 +76,4 @@ jobs:
       - name: Running PHPUnit tests
         env:
           dbtype: ${{ matrix.db }}
-        run: $GITHUB_WORKSPACE/vendor/bin/phpunit -c $GITHUB_WORKSPACE/phpunit.xml --testsuite=mod_smartlink_testsuite -v --testdox
+        run: $GITHUB_WORKSPACE/vendor/bin/phpunit -c $GITHUB_WORKSPACE/mod/smartlink/phpunit.xml --testsuite=mod_smartlink_testsuite -v --testdox

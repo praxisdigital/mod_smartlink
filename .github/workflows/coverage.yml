@@ -1,0 +1,58 @@
+name: Upload coverage report to Codacy
+
+on: [ "push" ]
+
+jobs:
+  UploadCoverageReportToCodacy:
+    runs-on: ubuntu-22.04
+    continue-on-error: false
+
+    steps:
+      - name: Setting up DB mysql
+        uses: johanmeiring/mysql-action@tmpfs-patch
+        with:
+          collation server: utf8mb4_danish_ci
+          mysql version: 8
+          mysql database: test
+          mysql user: test
+          mysql password: test
+          use tmpfs: true
+
+      - name: Setting up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+          coverage: pcov
+          ini-values: max_input_vars=5000, pcov.directory=$GITHUB_WORKSPACE/mod/smartlink/classes
+
+      - name: Checking out code from moodle/moodle
+        uses: actions/checkout@v4
+        with:
+          repository: moodle/moodle
+          ref: MOODLE_402_STABLE
+
+      - name: Check out code from ${{ github.repository }}
+        uses: actions/checkout@v4
+        with:
+          path: ${{ github.workspace }}/mod/smartlink
+          ref: ${{ github.ref }}
+
+      - name: Setting up PHPUnit
+        env:
+          dbtype: mysqli
+        run: |
+          echo "pathtophp=$(which php)" >> $GITHUB_ENV # Inject installed pathtophp to env. The template config needs it.
+          cp $GITHUB_WORKSPACE/.github/workflows/config-template.php $GITHUB_WORKSPACE/config.php
+          mkdir $GITHUB_WORKSPACE/../moodledata
+          sudo locale-gen en_AU.UTF-8
+          php $GITHUB_WORKSPACE/admin/tool/phpunit/cli/init.php --no-composer-self-update
+      - name: Running PHPUnit tests
+        env:
+          dbtype: mysqli
+        run: $GITHUB_WORKSPACE/vendor/bin/phpunit -c $GITHUB_WORKSPACE/mod/smartlink/phpunit.xml -v --testdox --coverage-clover=$GITHUB_WORKSPACE/clover.xml
+
+      - name: Upload coverage report to Codacy
+        uses: codacy/codacy-coverage-reporter-action@v1.3.0
+        with:
+          api-token: ${{ secrets.CODACY_API_TOKEN }}
+          coverage-reports: $GITHUB_WORKSPACE/clover.xml

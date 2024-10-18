@@ -3,19 +3,18 @@
 namespace mod_smartlink\external;
 
 use mod_smartlink\app\factory as base_factory;
-use external_function_parameters;
-use external_value;
+use core_external\external_function_parameters;
+use core_external\external_value;
 
 /* @codeCoverageIgnoreStart */
 defined('MOODLE_INTERNAL') || die();
 /* @codeCoverageIgnoreEnd */
 
 global $CFG;
-require_once($CFG->libdir.'/externallib.php');
 require_once($CFG->libdir.'/moodlelib.php');
 require_once(__DIR__.'/../../vendor/autoload.php');
 
-class prompt_openai extends \external_api
+class prompt_openai extends \core_external\external_api
 {
     public static function execute(int $contextid, string $jsondata) 
     {

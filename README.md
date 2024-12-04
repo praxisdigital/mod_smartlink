@@ -48,6 +48,8 @@ You can access these set of settings here: https://<site>/admin/settings.php?sec
 
 ## Release notes
 
+- **2.1.3** (2024112600)
+    - Changed pix/icon.svg to pix/monologo.svg
 - **2.1.2** (2024101500)
     - Fixed css issue overwriting moodle core dropdown css
 - **2.1.1** (2024042900)

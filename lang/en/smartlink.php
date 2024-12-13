@@ -43,4 +43,5 @@ $string['response_modal_close_warning'] = "You are about to close the summary. D
 $string['prompt_help_description'] = 'This setting inserts the prompt used in the AI lookup. Your prompt will automatically have the configured link appended';
 $string['prompt_help_title'] = 'Help with Smart Link Prompts';
 
-?>
+// Privacy
+$string['privacy:metadata'] = 'The Smart Link plugin does not store any personal data.';

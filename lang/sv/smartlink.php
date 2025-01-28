@@ -43,4 +43,5 @@ $string['response_modal_close_warning'] = "Du är på väg att stänga sammanfat
 $string['prompt_help_description'] = 'Den här inställningen infogar instruktionen som används i AI-sökningen. Din instruktion kommer automatiskt att följas av den konfigurerade länken';
 $string['prompt_help_title'] = 'Hjälp med Smart Link-instruktioner';
 
-?>
+// Privacy
+$string['privacy:metadata'] = 'Plugin-programmet Smart Link lagrar inga personliga uppgifter.';

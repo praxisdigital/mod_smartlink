@@ -43,4 +43,5 @@ $string['response_modal_close_warning'] = "Du er ved at lukke oversigten. Ønske
 $string['prompt_help_description'] = 'Denne indstilling indsætter den prompt, der bruges i AI-opslaget. Din prompt vil automatisk blive efterfulgt af det konfigurerede link';
 $string['prompt_help_title'] = 'Hjælp til Smart Link-prompter';
 
-?>
+// Privacy
+$string['privacy:metadata'] = 'Smart Link pluginnet opbevarer ingen personlig data.';

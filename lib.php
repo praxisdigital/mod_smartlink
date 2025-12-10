@@ -1,6 +1,6 @@
 <?php
 
-require_once($CFG->dirroot.'/lib/environmentlib.php');
+require_once $CFG->dirroot.'/lib/environmentlib.php';
 
 ensure_mod_smartlink_features_are_setup();
 

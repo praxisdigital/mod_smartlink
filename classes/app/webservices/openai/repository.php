@@ -13,14 +13,13 @@ class repository implements interfaces\repository
 {
     private base_factory $base_factory;
 
-    function __construct(base_factory $base_factory)
+    public function __construct(base_factory $base_factory)
     {
         $this->base_factory = $base_factory;
     }
 
     public function prompt(int $courseid, int $instanceid, string $prompt = '', int $promptid = 0): array
     {
-        $request = $this->prepare_request();
         $smartlink = $this->base_factory->smartlink()->get_settings($courseid, $instanceid);
         $description = '';
 
@@ -43,20 +42,20 @@ class repository implements interfaces\repository
         $article = ' ```'.mb_substr($article, 0, 4000).'```';
         $prompt .= $article;
 
-        $request->payload['messages'][] = [
-            'role' => 'user',
-            'content' => $prompt,
+        $messages = [
+            new \local_mxaimanager\app\ai\provider\message(
+                'user',
+                $prompt
+            )
         ];
 
-        $openai = $this->base_factory->moodle()->curl()->post($request->url, json_encode($request->payload), ['HTTPHEADER' => $request->headers]);
-        $response = json_decode($openai, true);
-        $content = $response['choices'][0]['message']['content'];
+        $feature = $this->base_factory->local_mxaimanager()->ai()->feature()->repository()->get_by_component_and_name_identifier('mod_smartlink', 'ai:feature:prompt_link');
 
         return [
             'description' => $description,
             'prompt_text' => $prompt_text,
             'prompt_real' => $prompt,
-            'result' => $content,
+            'result' => $this->base_factory->local_mxaimanager()->ai()->feature()->handler($feature)->chat_completion($messages)
         ];
     }
 

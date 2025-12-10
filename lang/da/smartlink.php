@@ -10,6 +10,9 @@ $string['modulenameplural'] = 'Smart Link';
 $string['smartlink:modifyprompts'] = 'Tillad brugere at oprette/ændre/slette prompts';
 $string['smartlink:addinstance'] = 'Tillad brugere at tilføje Smartlink instanser';
 
+$string['ai:feature:prompt_link'] = 'Prompt et Link Feature';
+$string['ai:feature:prompt_link_desc'] = 'Brug AI til at generere indhold baseret på et link og en prompt';
+
 // Settings
 $string['settings_prompts_title'] = 'Administrer prompts';
 $string['settings_prompts'] = 'Rediger dine prompts';

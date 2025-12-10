@@ -2,6 +2,43 @@
 
 require_once($CFG->dirroot.'/lib/environmentlib.php');
 
+ensure_mod_smartlink_features_are_setup();
+
+function ensure_mod_smartlink_features_are_setup(): void {
+    $component = 'mod_smartlink';
+
+    if (!\core\plugin_manager::instance()->get_plugin_info('local_mxaimanager')) {
+        // AI Manager is not installed, nothing to do.
+        return;
+    }
+
+    // Obtain the factory instance.
+    $factory = \local_mxaimanager\app\factory::make();
+
+    // Create career transition feature if it does not exist.
+    $name_identifier = 'ai:feature:prompt_link';
+
+    try {
+        // Register the feature in the AI Manager.
+        $feature = $factory->ai()->feature()->entity()
+            ->set_component($component)
+            ->set_name_identifier($name_identifier)
+            ->set_description_identifier("{$name_identifier}_desc");
+        $feature->set_id(
+            $factory->ai()->feature()->repository()->insert($feature)
+        );
+
+        // Register the actions for the feature.
+        $factory->ai()->feature()->action()->repository()->insert(
+            $factory->ai()->feature()->action()->entity()
+                ->set_action_interface(\local_mxaimanager\app\ai\provider\providers\interfaces\chat_completion::class)
+                ->set_feature_id($feature->get_id())
+        );
+    } catch (\Exception) {
+        // Ignore if the feature already exists.
+    }
+}
+
 /**
  * Add page instance
  * @param stdClass $data

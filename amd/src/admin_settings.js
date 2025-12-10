@@ -64,7 +64,7 @@ class AdminSettings {
             $(".prompt-edit-warning").css("display", "none");
         });
 
-        $("[data-dismiss='modal']").on("click", function () {
+        $("[data-bs-dismiss='modal']").on("click", function () {
             $('form[name="prompt-form"]')[0].reset();
             $(".prompt-edit-warning").css("display", "none");
         });

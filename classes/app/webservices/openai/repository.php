@@ -58,23 +58,4 @@ class repository implements interfaces\repository
             'result' => $this->base_factory->local_mxaimanager()->ai()->feature()->handler($feature)->chat_completion($messages)
         ];
     }
-
-    public function prepare_request(): object
-    {
-        $config = $this->base_factory->moodle()->config('mod_smartlink');
-
-        return (object)[
-            'url' => $config->openai_endpoint,
-            'headers' => [
-                'Content-Type: application/json',
-                'Authorization: Bearer '.$config->openai_token,
-                'Accept: application/json',
-            ],
-            'payload' => [
-                'model' => $config->openai_model,
-                'messages' => [],
-                'temperature' => (float)$config->openai_temperature,
-            ],
-        ];
-    }
 }

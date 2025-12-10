@@ -15,7 +15,7 @@ function ensure_mod_smartlink_features_are_setup(): void {
     // Obtain the factory instance.
     $factory = \local_mxaimanager\app\factory::make();
 
-    // Create career transition feature if it does not exist.
+    // Create prompt link feature if it does not exist.
     $name_identifier = 'ai:feature:prompt_link';
 
     try {

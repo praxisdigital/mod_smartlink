@@ -37,13 +37,13 @@ class SmartLinkActions {
             $('form[name="custom-prompt-form"]')[0].reset();
         });
 
-        $("[data-dismiss='modal']").on("click", function () {
+        $("[data-bs-dismiss='modal']").on("click", function () {
             $('form[name="custom-prompt-form"]')[0].reset();
         });
 
         // Click outside modal
         $(document).click(async function (e) {
-            if (e.target.id === "ownPromptModal") {
+            if (e.target.id.includes("ownPromptModal-")) {
                 var confimationMsg = await Str.get_string("prompt_modal_close_warning", "smartlink");
                 if (confirm(confimationMsg)) {
                     $(".custom-prompt-modal").modal("toggle");
@@ -71,9 +71,9 @@ class SmartLinkActions {
         }.bind(this));
 
         // Prompt from input
-        $('#ownPromptModal[data-moduleid="'+this.moduleid+'"] .submit-own-prompt-btn').click(function (e) {
+        $('#ownPromptModal-' + this.moduleid + ' .submit-own-prompt-btn').click(function (e) {
             e.preventDefault();
-            let prompt = $('#ownPromptModal[data-moduleid="'+this.moduleid+'"] textarea[name="prompt"]').val();
+            let prompt = $('#ownPromptModal-' + this.moduleid + ' textarea[name="prompt"]').val();
             if (prompt && !this.siblingsLoading()) {
                 this.getAiResponse({
                     prompt: prompt,
@@ -110,7 +110,7 @@ class SmartLinkActions {
     handleResponse(response) {
         $('.smartlink[data-id="'+this.moduleid+'"] .spinner').addClass("d-none");
         let responseObj = JSON.parse(response);
-        let modal = $('#ownPromptModal[data-moduleid="'+this.moduleid+'"]');
+        let modal = $('#ownPromptModal-' + this.moduleid);
 
         if (modal.is(':visible')) {
             modal.modal('toggle');

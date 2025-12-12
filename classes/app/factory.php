@@ -34,4 +34,9 @@ class factory implements interfaces\factory
     {
         return new article\factory($this);
     }
+
+    public function local_mxaimanager(): \local_mxaimanager\app\factory
+    {
+        return \local_mxaimanager\app\factory::make();
+    }
 }

@@ -1,7 +1,7 @@
 <div class="container-fluid get-ai-section">
     <div class="row">
         <div class="dropdown show">
-            <button class="btn btn-secondary dropdown-toggle" data-display="static" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-secondary dropdown-toggle" data-display="static" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{#str}}get_ai_button, smartlink{{/str}}
             </button>
             <div class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenu2">
@@ -14,7 +14,7 @@
                     <a class="dropdown-item disabled" href="#">{{#str}}no_prompt_msg, smartlink{{/str}}</a>
                 {{/hasprompts}}
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle='modal' data-target='#ownPromptModal[data-moduleid="{{ moduleid }}"]'>{{#str}}createnew, core{{/str}}</a>
+                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ownPromptModal-{{ moduleid }}">{{#str}}createnew, core{{/str}}</a>
             </div>
         </div>
     </div>

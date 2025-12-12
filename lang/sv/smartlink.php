@@ -10,6 +10,9 @@ $string['modulenameplural'] = 'Smart Link';
 $string['smartlink:modifyprompts'] = 'Tillåt användare att lägga till/redigera/ta bort instruktioner';
 $string['smartlink:addinstance'] = 'Tillåt användare att lägga till Smartlink instanser';
 
+$string['ai:feature:prompt_link'] = 'Prompt en länk-funktion';
+$string['ai:feature:prompt_link_desc'] = 'Använd AI för att generera innehåll baserat på en länk och en instruktion';
+
 // Settings
 $string['settings_prompts_title'] = 'Administrer instruktioner';
 $string['settings_prompts'] = 'Redigera dina instruktioner';

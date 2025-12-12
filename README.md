@@ -48,6 +48,8 @@ You can access these set of settings here: https://<site>/admin/settings.php?sec
 
 ## Release notes
 
+- **2.1.5** (20251210000)
+    - Updated AI API to local_mxaimanager
 - **2.1.4** (2024121300)
     - Added privacy provider
 - **2.1.3** (2024112600)

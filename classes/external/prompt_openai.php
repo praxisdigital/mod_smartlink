@@ -16,7 +16,7 @@ require_once(__DIR__.'/../../vendor/autoload.php');
 
 class prompt_openai extends \core_external\external_api
 {
-    public static function execute(int $contextid, string $jsondata) 
+    public static function execute(int $contextid, string $jsondata): string
     {
         try {
 
@@ -43,7 +43,6 @@ class prompt_openai extends \core_external\external_api
                 'data' => $prompt,
                 'message' => 'Success',
             ]);
-
         } catch (\Exception $e) {
             return json_encode([
                 'success' => false,
@@ -59,7 +58,7 @@ class prompt_openai extends \core_external\external_api
         ]);
     }
 
-    public static function execute_returns()
+    public static function execute_returns(): external_value
     {
         return new external_value(PARAM_RAW);
     }

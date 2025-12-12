@@ -9,5 +9,4 @@ defined('MOODLE_INTERNAL') || die();
 interface repository 
 {
     public function prompt(int $courseid, int $instanceid, string $prompt = '', int $promptid = 0): array;
-    public function prepare_request(): object;
 }

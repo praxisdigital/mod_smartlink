@@ -1,0 +1,24 @@
+<div class="modal fade response-modal" id="responseModal" tabindex="-1" role="dialog" aria-labelledby="responseModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog result-modal-dialog modal-margin" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="responseModalLabel">{{#str}}error_title, smartlink{{/str}}</h4>
+                <button type="button" class="close modal-hide" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body openai-modal-body text-left pb-0">
+                <div class="prompt-desc"></div>
+                <div class="prompt-text"></div>
+                <div class="row px-4">
+                    <div class="alert alert-danger" role="alert">
+                        {{err_msg}}
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary modal-hide" data-bs-dismiss="modal">{{#str}}closebuttontitle, core{{/str}}</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import Ajax from 'core/ajax';
 import * as Str from 'core/str';
+import Templates from "core/templates";
 
 class SmartLinkActions {
 
@@ -109,8 +110,8 @@ class SmartLinkActions {
     // On a succesful response
     handleResponse(response) {
         $('.smartlink[data-id="'+this.moduleid+'"] .spinner').addClass("d-none");
-        let responseObj = JSON.parse(response);
         let modal = $('#ownPromptModal-' + this.moduleid);
+        let responseObj = JSON.parse(response);
 
         if (modal.is(':visible')) {
             modal.modal('toggle');
@@ -118,7 +119,7 @@ class SmartLinkActions {
 
         // Might contain errors anyway
         if (responseObj.success == false) {
-            alert(responseObj.message);
+            this.handleFailure(response)
         } else {
             let data = responseObj.data;
             let result = data.result || 'No response from AI';
@@ -130,10 +131,43 @@ class SmartLinkActions {
     }
 
     // Failure
-    handleFailure(response) {
-        $('.smartlink[data-id="'+this.moduleid+'"] .spinner').addClass("d-none");
-        var responseObj = JSON.parse(response);
-        alert(responseObj.message);
+    async handleFailure(response) {
+        $('.smartlink[data-id="'+this.moduleid+'"] .spinner').addClass("d-none")
+
+        try{
+
+            let responseObj;
+            try {
+                responseObj = JSON.parse(response);
+            } catch (e) {
+                responseObj = null;
+            }
+            if (!responseObj || typeof responseObj !== 'object') {
+                const err_msg = await Str.get_string("unknown_error", "mod_smartlink");
+                responseObj = { message: err_msg };
+            }
+
+            let template_context = {
+                err_msg:responseObj.message
+            };
+
+            const { html, js } = await Templates.renderForPromise('mod_smartlink/exception', template_context);
+            // Close own-prompt modal if open
+            const ownModal = $('#ownPromptModal-' + this.moduleid);
+            if (ownModal.is(':visible')) {
+                ownModal.modal('hide');
+            }
+            // Remove any existing #responseModal (success or previous exception) to avoid id collision
+            $('#responseModal').remove();
+            // Append new exception modal to body and run its JS
+            Templates.appendNodeContents('body', html, js);
+            // Show it
+            $('#responseModal').modal('show');
+
+        }
+        catch(err){
+            console.error(err);
+        }
     }
 }
 

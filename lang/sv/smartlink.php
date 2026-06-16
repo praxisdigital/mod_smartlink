@@ -47,6 +47,7 @@ $string['prompt_help_description'] = 'Den här inställningen infogar instruktio
 $string['prompt_help_title'] = 'Hjälp med Smart Link-instruktioner';
 $string['unknown_error'] = 'Okänt fel';
 $string['error_title'] = 'Fel';
+$string['error_contact_siteadmin'] = 'Om felet kvarstår, kontakta webbplatsens administratör';
 
 // Privacy
 $string['privacy:metadata'] = 'Plugin-programmet Smart Link lagrar inga personliga uppgifter.';

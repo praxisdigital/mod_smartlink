@@ -47,6 +47,7 @@ $string['prompt_help_description'] = 'This setting inserts the prompt used in th
 $string['prompt_help_title'] = 'Help with Smart Link Prompts';
 $string['unknown_error'] = 'Unknown error';
 $string['error_title'] = 'Error';
+$string['error_contact_siteadmin'] = 'If the error persists please contact your site administrator';
 
 // Privacy
 $string['privacy:metadata'] = 'The Smart Link plugin does not store any personal data.';

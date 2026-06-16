@@ -12,7 +12,9 @@
                 <div class="prompt-text"></div>
                 <div class="row px-4">
                     <div class="alert alert-danger" style="overflow-wrap: anywhere;" role="alert">
-                        {{err_msg}}
+                        <strong>{{#str}}error_title, mod_smartlink{{/str}}</strong>
+                        <p>{{err_msg}}</p>
+                        <small class="font-italic">{{#str}}error_contact_siteadmin, mod_smartlink{{/str}}</small>
                     </div>
                 </div>
             </div>

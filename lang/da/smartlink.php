@@ -47,6 +47,7 @@ $string['prompt_help_description'] = 'Denne indstilling indsætter den prompt, d
 $string['prompt_help_title'] = 'Hjælp til Smart Link-prompter';
 $string['error_title'] = 'Fejl';
 $string['unknown_error'] = 'Ukendt fejl';
+$string['error_contact_siteadmin'] = 'Hvis fejlen fortsætter kan du kontakte din side administrator';
 
 
 // Privacy

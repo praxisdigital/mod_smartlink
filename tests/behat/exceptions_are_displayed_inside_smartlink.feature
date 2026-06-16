@@ -13,7 +13,7 @@ Feature: Exceptions are displayed inside Smartlink
 
     And I log in as "admin"
     ## A lack of AI provider instance configured will trigger an exception in CoCreate.
-    And I check that mxaimanager "has not" an AI provider instance configured when
+    And I check that mxaimanager "has not" an AI provider instance configured
 
   @javascript
   Scenario: mxaimanager lacks a configured AI provider instance and the user tries to use Smartlink

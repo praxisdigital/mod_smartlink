@@ -31,7 +31,8 @@ AI text submission plugin that allows admins to define submission scope of steps
 - smartlink_prompts - This records the prompt details which are added by the admin.
 
 ## Release notes
-
+- **2.1.6** (20260618000)
+  - Replaced default Moodle stack trace exception modal with custom exception UI
 - **2.1.5** (20251210000)
     - Updated AI API to local_mxaimanager
 - **2.1.4** (2024121300)

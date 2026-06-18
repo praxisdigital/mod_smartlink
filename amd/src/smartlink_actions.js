@@ -45,12 +45,12 @@ class SmartLinkActions {
         // Click outside modal
         $(document).click(async function (e) {
             if (e.target.id.includes("ownPromptModal-")) {
-                var confimationMsg = await Str.get_string("prompt_modal_close_warning", "smartlink");
+                var confimationMsg = await Str.get_string("prompt_modal_close_warning", "mod_smartlink");
                 if (confirm(confimationMsg)) {
                     $(".custom-prompt-modal").modal("toggle");
                 }
             } else if (e.target.id === "responseModal") {
-                var confimationMsg = await Str.get_string("response_modal_close_warning", "smartlink");
+                var confimationMsg = await Str.get_string("response_modal_close_warning", "mod_smartlink");
                 if (confirm(confimationMsg)) {
                     $(".response-modal").modal("toggle");
                 }
@@ -157,12 +157,12 @@ class SmartLinkActions {
             if (ownModal.is(':visible')) {
                 ownModal.modal('hide');
             }
-            // Remove any existing #responseModal (success or previous exception) to avoid id collision
-            $('#responseModal').remove();
+            // Remove any existing #exceptionModal (success or previous exception) to avoid id collision
+            $('#exceptionModal').remove();
             // Append new exception modal to body and run its JS
             Templates.appendNodeContents('body', html, js);
             // Show it
-            $('#responseModal').modal('show');
+            $('#exceptionModal').modal('show');
 
         }
         catch(err){

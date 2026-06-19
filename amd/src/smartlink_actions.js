@@ -166,7 +166,7 @@ class SmartLinkActions {
 
         }
         catch(err){
-            console.error(err);
+            window.console.error(err);
         }
     }
 }

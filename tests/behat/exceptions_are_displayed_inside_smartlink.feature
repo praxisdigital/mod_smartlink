@@ -1,4 +1,4 @@
-@mod_smartlink  @smat
+@mod_smartlink
 Feature: Exceptions are displayed inside Smartlink
   Background:
     Given the following "courses" exist:

@@ -45,6 +45,10 @@ $string['prompt_modal_close_warning'] = "Du er ved at lukke denne formular. De �
 $string['response_modal_close_warning'] = "Du er ved at lukke oversigten. Ønsker du at fortsætte?";
 $string['prompt_help_description'] = 'Denne indstilling indsætter den prompt, der bruges i AI-opslaget. Din prompt vil automatisk blive efterfulgt af det konfigurerede link';
 $string['prompt_help_title'] = 'Hjælp til Smart Link-prompter';
+$string['error_title'] = 'Fejl';
+$string['unknown_error'] = 'Ukendt fejl';
+$string['error_contact_siteadmin'] = 'Hvis fejlen fortsætter kan du kontakte din side administrator';
+
 
 // Privacy
 $string['privacy:metadata'] = 'Smart Link pluginnet opbevarer ingen personlig data.';

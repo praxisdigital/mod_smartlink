@@ -45,6 +45,9 @@ $string['prompt_modal_close_warning'] = "You are about to close this form. The c
 $string['response_modal_close_warning'] = "You are about to close the summary. Do you wish to continue?";
 $string['prompt_help_description'] = 'This setting inserts the prompt used in the AI lookup. Your prompt will automatically have the configured link appended';
 $string['prompt_help_title'] = 'Help with Smart Link Prompts';
+$string['unknown_error'] = 'Unknown error';
+$string['error_title'] = 'Error';
+$string['error_contact_siteadmin'] = 'If the error persists please contact your site administrator';
 
 // Privacy
 $string['privacy:metadata'] = 'The Smart Link plugin does not store any personal data.';

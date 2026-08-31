@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import Ajax from 'core/ajax';
 import * as Str from 'core/str';
+import Templates from "core/templates";
 
 class SmartLinkActions {
 
@@ -44,12 +45,12 @@ class SmartLinkActions {
         // Click outside modal
         $(document).click(async function (e) {
             if (e.target.id.includes("ownPromptModal-")) {
-                var confimationMsg = await Str.get_string("prompt_modal_close_warning", "smartlink");
+                var confimationMsg = await Str.get_string("prompt_modal_close_warning", "mod_smartlink");
                 if (confirm(confimationMsg)) {
                     $(".custom-prompt-modal").modal("toggle");
                 }
             } else if (e.target.id === "responseModal") {
-                var confimationMsg = await Str.get_string("response_modal_close_warning", "smartlink");
+                var confimationMsg = await Str.get_string("response_modal_close_warning", "mod_smartlink");
                 if (confirm(confimationMsg)) {
                     $(".response-modal").modal("toggle");
                 }
@@ -109,8 +110,8 @@ class SmartLinkActions {
     // On a succesful response
     handleResponse(response) {
         $('.smartlink[data-id="'+this.moduleid+'"] .spinner').addClass("d-none");
-        let responseObj = JSON.parse(response);
         let modal = $('#ownPromptModal-' + this.moduleid);
+        let responseObj = JSON.parse(response);
 
         if (modal.is(':visible')) {
             modal.modal('toggle');
@@ -118,7 +119,7 @@ class SmartLinkActions {
 
         // Might contain errors anyway
         if (responseObj.success == false) {
-            alert(responseObj.message);
+            this.handleFailure(response)
         } else {
             let data = responseObj.data;
             let result = data.result || 'No response from AI';
@@ -130,10 +131,43 @@ class SmartLinkActions {
     }
 
     // Failure
-    handleFailure(response) {
-        $('.smartlink[data-id="'+this.moduleid+'"] .spinner').addClass("d-none");
-        var responseObj = JSON.parse(response);
-        alert(responseObj.message);
+    async handleFailure(response) {
+        $('.smartlink[data-id="'+this.moduleid+'"] .spinner').addClass("d-none")
+
+        try{
+
+            let responseObj;
+            try {
+                responseObj = JSON.parse(response);
+            } catch (e) {
+                responseObj = null;
+            }
+            if (!responseObj || typeof responseObj !== 'object') {
+                const err_msg = await Str.get_string("unknown_error", "mod_smartlink");
+                responseObj = { message: err_msg };
+            }
+
+            let template_context = {
+                err_msg:responseObj.message
+            };
+
+            const { html, js } = await Templates.renderForPromise('mod_smartlink/exception', template_context);
+            // Close own-prompt modal if open
+            const ownModal = $('#ownPromptModal-' + this.moduleid);
+            if (ownModal.is(':visible')) {
+                ownModal.modal('hide');
+            }
+            // Remove any existing #exceptionModal (success or previous exception) to avoid id collision
+            $('#exceptionModal').remove();
+            // Append new exception modal to body and run its JS
+            Templates.appendNodeContents('body', html, js);
+            // Show it
+            $('#exceptionModal').modal('show');
+
+        }
+        catch(err){
+            window.console.error(err);
+        }
     }
 }
 

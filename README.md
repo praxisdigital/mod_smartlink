@@ -18,26 +18,10 @@ mod
 
 AI text submission plugin that allows admins to define submission scope of steps, and students to generate AI assisted content based on assignment title.
 
-## Settings
-
-Smartlink requires some setup to be completed before used, forgetting this step will cause the plugin not to work.
-You can access these set of settings here: https://<site>/admin/settings.php?section=modsettingsmartlink
-
-- Endpoint URL **(openai_endpoint)**
-- API Token **(openai_token)**
-- Model **(openai_model)**
-- Temperature **(openai_temperature)**
-- Max tokens **(max_tokens)**
-- Top p **(top_p)**
-- Frequency Penalty **(frequency_penalty)**
-- Presence penalty **(presence_penalty)**
-- API key **(api_key)**
-
 ## Setup
 
 - Install the plugin
 - Ensure that all dependencies are also installed
-- Configure the plugin at https://<site>/admin/settings.php?section=modsettingsmartlink
 - Create some prompts at https://<site>/mod/smartlink/index.php
 - Go to the Course view and add the Smartlink module
 - Click on the "Get AI Version" button and select the prompt you wish to execute. After loading for a few seconds, a modal should appear with your result
@@ -47,7 +31,8 @@ You can access these set of settings here: https://<site>/admin/settings.php?sec
 - smartlink_prompts - This records the prompt details which are added by the admin.
 
 ## Release notes
-
+- **2.1.6** (20260618000)
+  - Replaced default Moodle stack trace exception modal with custom exception UI
 - **2.1.5** (20251210000)
     - Updated AI API to local_mxaimanager
 - **2.1.4** (2024121300)
